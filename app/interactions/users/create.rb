@@ -2,7 +2,7 @@ class Users::Create < ActiveInteraction::Base
   hash :params
 
   def execute
-    #don't do anything if params is empty
+    # don't do anything if params is empty
     return unless params['name']
     return unless params['patronymic']
     return unless params['email']
@@ -27,7 +27,7 @@ class Users::Create < ActiveInteraction::Base
     user_skills = []
     params['skills'].split(',').each do |skil|
       skil = Skil.find(name: skil)
-      user_skills =  user_skills + [skil]
+      user_skills += [skil]
     end
     user.skills = user_skills
     user.save

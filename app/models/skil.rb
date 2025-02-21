@@ -1,3 +1,2 @@
-class Skil < ApplicationRecord
-  has_many :users
-end
+# for backwards compatibility. if we have missed something
+Skil = Skill

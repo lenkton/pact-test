@@ -11,26 +11,35 @@ module Users
     validates :gender, inclusion: { in: %w[male female] }
 
     def execute
-      interests = Interest.where(name: params['interests'])
-      skills = Skill.where(name: params['skills'].split(','))
+      interests_relation = Interest.where(name: interests)
+      skills_relation = Skill.where(name: skills.split(','))
 
       user = User.new(user_params)
 
-      user.interests = interests
-      user.skills = skills
+      user.interests = interests_relation
+      user.skills = skills_relation
 
       user.save
     end
 
     private
 
-    def user_params
-      params.except(:interests, :skills)
-            .merge(user_full_name: user_full_name)
+    def user_params # rubocop:disable Metrics/MethodLength
+      {
+        age: age,
+        name: name,
+        surname: surname,
+        patronymic: patronymic,
+        email: email,
+        nationality: nationality,
+        country: country,
+        gender: gender,
+        user_full_name: user_full_name
+      }
     end
 
     def user_full_name
-      "#{params['surname']} #{params['name']} #{params['patronymic']}"
+      "#{surname} #{name} #{patronymic}"
     end
   end
 end

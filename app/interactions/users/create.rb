@@ -12,22 +12,17 @@ module Users
     def execute
       # WARN: I have made :surname required, but should I have?
       user_full_name = "#{params['surname']} #{params['name']} #{params['patronymic']}"
-      user_params = params.except(:interests)
+      user_params = params.except(:interests, :skills)
                           .merge(user_full_name: user_full_name)
-      user = User.create(user_params)
-
-      Interest.where(name: params['interests']).each do |interest|
-        user.interests = user.interest + interest
-        user.save!
-      end
-
-      user_skills = []
+      interests = Interest.where(name: params['interests'])
       # WARN: I have made :skills required, but should I have?
-      params['skills'].split(',').each do |skill|
-        skill = Skill.find(name: skil)
-        user_skills += [skill]
-      end
-      user.skills = user_skills
+      skills = Skill.where(name: params['skills'].split(','))
+
+      user = User.new(user_params)
+
+      user.interests = interests
+      user.skills = skills
+
       user.save
     end
   end

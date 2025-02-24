@@ -1,5 +1,9 @@
 plugins:
   - rubocop-rails
 
+Style/SymbolArray:
+  Exclude:
+    - 'db/migrate/*'
+
 Style/Documentation:
   Enabled: false

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class Skill < ApplicationRecord
-  has_many :user_skills, dependent: :destroy
-  has_many :users, through: :user_skills
+  has_many :skills_users, dependent: :destroy
+  has_many :users, through: :skills_users
 end

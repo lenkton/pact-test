@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_24_125450) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_24_132436) do
   create_table "interests", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -18,11 +18,25 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_24_125450) do
     t.index ["name"], name: "index_interests_on_name", unique: true
   end
 
+  create_table "interests_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "interest_id", null: false
+    t.index ["interest_id", "user_id"], name: "index_interests_users_on_interest_id_and_user_id", unique: true
+    t.index ["user_id", "interest_id"], name: "index_interests_users_on_user_id_and_interest_id", unique: true
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_skills_on_name", unique: true
+  end
+
+  create_table "skills_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "skill_id", null: false
+    t.index ["skill_id", "user_id"], name: "index_skills_users_on_skill_id_and_user_id", unique: true
+    t.index ["user_id", "skill_id"], name: "index_skills_users_on_user_id_and_skill_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

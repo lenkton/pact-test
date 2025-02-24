@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :interests
-  has_many :skills, class_name: 'Skil'
+  has_many :user_interests
+  has_many :interests, through: :user_interests
+  has_many :user_skills
+  has_many :skills, through: :user_skills
 
   validates :email, uniqueness: true
 end

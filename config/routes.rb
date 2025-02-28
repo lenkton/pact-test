@@ -9,4 +9,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  defaults format: :json do
+    resources :users, only: %i[index]
+  end
 end

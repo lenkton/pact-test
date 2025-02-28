@@ -69,6 +69,9 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  config.include Helpers::Json, type: :request
 end
 
 Shoulda::Matchers.configure do |config|

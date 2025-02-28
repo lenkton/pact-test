@@ -5,6 +5,7 @@ json.user do
   json.name @user.name
   json.surname @user.surname
   json.patronymic @user.patronymic
+  json.age @user.age
   json.email @user.email
   json.nationality @user.nationality
   json.country @user.country

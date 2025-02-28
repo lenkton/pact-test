@@ -76,6 +76,7 @@ RSpec.describe 'Users', type: :request do
       include_examples 'it has the field', 'name'
       include_examples 'it has the field', 'surname'
       include_examples 'it has the field', 'patronymic'
+      include_examples 'it has the field', 'age'
       include_examples 'it has the field', 'email'
       include_examples 'it has the field', 'nationality'
       include_examples 'it has the field', 'country'

@@ -1,24 +1,35 @@
-# README
+# What is this
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a solution to the problem described here: https://gist.github.com/wwwermishel/fd2c7973520c270c508720ba3a20e09c.
 
-Things you may want to cover:
+It features three endpoints at the moment:
+1. GET /users
+2. GET /users/:id
+3. POST /users
 
-* Ruby version
+# Skill vs Skil
 
-* System dependencies
+In the problem there is a typo, that we need to fix.
 
-* Configuration
+It is asked to provide two solutions to this issue.
 
-* Database creation
+I see the following:
 
-* Database initialization
+1. Just Ctrl+f and replace Skil with Skill throughout the entire project.
+   * It should work just fine in the current example, but might be bothersome (and a little risky)
+     in huge projects.
+2. Move all the logic into a new Skill class, but leave the Skil class as an alias for Skill.
+   * This way (mostly) all of the existing code shold work just fine with the Skil class name,
+     which enables more graceful transition to Skill.
 
-* How to run the test suite
+# Security concerns
 
-* Services (job queues, cache servers, search engines, etc.)
+## Authorization
 
-* Deployment instructions
+There is no authorization/authentication mechanisms at all,
+so it is too risky for running in a production environment.
 
-* ...
+## Index implementation
+
+Also, in the `GET /users` I use `User.all` under the hood,
+so it is risky to run against large numbers of users.

@@ -19,7 +19,11 @@ module Users
       user.interests = interests_relation
       user.skills = skills_relation
 
-      user.save
+      unless user.save # rubocop:disable Style/IfUnlessModifier
+        errors.merge!(user.errors)
+      end
+
+      user
     end
 
     private

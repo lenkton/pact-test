@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :interest do
-    sequence(:name) { "Interest #{n}" }
+    sequence(:name) { "Interest #{_1}" }
   end
 end

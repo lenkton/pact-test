@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :skill do
-    sequence(:name) { "Skill #{n}" }
+    sequence(:name) { "Skill #{_1}" }
   end
 end

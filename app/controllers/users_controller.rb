@@ -14,4 +14,15 @@ class UsersController < ApplicationController
       render json: { errors: outcome.errors }, status: :not_found
     end
   end
+
+  def create
+    outcome = Users::Create.run(params)
+
+    if outcome.valid?
+      @user = outcome.result
+      render :show, status: :created
+    else
+      render json: { errors: outcome.errors }, status: :unprocessable_entity
+    end
+  end
 end

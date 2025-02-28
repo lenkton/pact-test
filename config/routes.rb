@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   defaults format: :json do
-    resources :users, only: %i[index show]
+    resources :users, only: %i[index show create]
   end
 end
